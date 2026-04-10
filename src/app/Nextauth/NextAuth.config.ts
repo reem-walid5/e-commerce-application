@@ -43,21 +43,19 @@ export const authOptions: NextAuthOptions = {
   ],
   // jwt: { maxAge: 60 * 60 * 24 * 3 },
   pages: { signIn: "/LogIn" },
-  callbacks:{
-    jwt(param) {
-      if(param.user){
-        param.token.routeToken = param.user.credentialsToken
-        param.token.id = param.user.id
-      }
-      console.log("param token " , param);
-      
-      
-      return param.token
-    },
-    session(param) {
-      param.token.routeToken = (param.user as any).credentialsToken;
-      console.log("param of session " , param);
-      return param.session
-    },
-  }
+  callbacks: {
+  jwt({ token, user }) {
+    if (user) {
+      token.routeToken = (user as any).credentialsToken;
+      token.id = user.id;
+    }
+    return token;
+  },
+
+  session({ session, token }) {
+    (session as any).routeToken = token.routeToken;
+    (session as any).id = token.id;
+    return session;
+  },
+}
 };
