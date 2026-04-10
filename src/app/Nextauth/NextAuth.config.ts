@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
       return param.token
     },
     session(param) {
-      param.session.user.id = param.token.id
+      param.token.routeToken = (param.user as any).credentialsToken;
       console.log("param of session " , param);
       return param.session
     },
