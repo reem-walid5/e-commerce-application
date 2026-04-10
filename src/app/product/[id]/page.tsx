@@ -18,6 +18,9 @@ export default async function page({
 }) {
   const id = (await params).id;
   const productDetails = await getProductDetails(id);
+  if (!productDetails) {
+  return <div>Loading product...</div>;
+}
   return (
     <div className="container m-auto py-3">
       <Breadcrumb className="mb-3">
@@ -81,7 +84,7 @@ export default async function page({
           <div className="flex items-center gap-3 mb-4">
             <div className="flex text-yellow-400">
               {Array.from({ length: 5 }).map((_, i) => {
-                const rating = productDetails?.ratingsAverage;
+                const rating = productDetails?.ratingsAverage ?? 0;
 
                 if (rating >= i + 1) return <FaStar key={i} />;
                 if (rating >= i + 0.5) return <FaStarHalfAlt key={i} />;
