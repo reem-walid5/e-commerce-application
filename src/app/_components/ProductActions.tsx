@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import WishlistButton from "../WishList/WishlistButton";
+import Button from "./AddToCardButton/Button";
 
 interface Props {
   price: number;
@@ -59,9 +60,9 @@ export default function ProductActions({ price, quantity , id}: Props) {
       {/* buttons */}
       <div className="flex gap-4 w-full">
 
-        <button className="flex-1 w-full bg-[#22c35d] font-semibold text-white border border-gray-300 text-2xl  py-3 rounded-xl">
+        <Button id={id} className="flex-1 w-full bg-[#22c35d] font-semibold text-white border border-gray-300 text-2xl  py-3 rounded-xl">
           Add to Cart
-        </button>
+        </Button>
 
         <button className="flex-1 w-full bg-gray-900 font-semibold text-white border border-[#15803D] text-2xl py-3 rounded-xl">
           Buy Now

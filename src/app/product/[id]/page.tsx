@@ -11,6 +11,7 @@ import {
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import ProductImages from "./ProductImages";
+
 export default async function page({
   params,
 }: {
@@ -18,70 +19,75 @@ export default async function page({
 }) {
   const id = (await params).id;
   const productDetails = await getProductDetails(id);
+
   if (!productDetails) {
-  return <div>Loading product...</div>;
-}
+    return <div>Loading product...</div>;
+  }
+
   return (
-    <div className="container m-auto py-3">
-      <Breadcrumb className="mb-3">
+    <div className="container m-auto py-4 md:py-6 px-3 md:px-0">
+
+      {/* BREADCRUMB */}
+      <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink
               href="#"
-              className="text-gray-500 font-semibold hover:text-[#15803D] duration-100"
+              className="text-gray-500 font-semibold hover:text-[#15803D]"
             >
-              <div className="flex items-center justify-center gap-1">
+              <div className="flex items-center gap-1">
                 <IoHome /> Home
               </div>
             </BreadcrumbLink>
           </BreadcrumbItem>
+
           <BreadcrumbSeparator />
+
           <BreadcrumbItem>
-            <BreadcrumbLink
-              href="#"
-              className="text-gray-500 font-semibold hover:text-[#15803D] duration-100"
-            >
+            <BreadcrumbLink className="text-gray-500 font-semibold hover:text-[#15803D]">
               Components
             </BreadcrumbLink>
           </BreadcrumbItem>
+
           <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink
-              href="#"
-              className="text-gray-500 font-semibold hover:text-[#15803D] duration-100"
-            >
-              Components
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
+
           <BreadcrumbItem>
             <BreadcrumbPage className="text-[#15803D] font-semibold">
-              Breadcrumb
+              Product Details
             </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="grid grid-cols-4 mt-10 gap-6 ">
-        <div className="col-span-1 p-2 rounded-2xl border border-[#15803D27]">
+
+      {/* GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-6 md:mt-10">
+
+        {/* IMAGES */}
+        <div className="md:col-span-1 lg:col-span-1 p-2 rounded-2xl border border-[#15803D27]">
           <ProductImages images={productDetails?.images || []} />
         </div>
-        <div className="col-span-3 p-6 rounded-2xl border border-[#15803D27] bg-gray-100">
-          {/* info */}
-          <div className="flex gap-3 mb-3 ">
-            <span className="bg-[#15803D46] text-gray-600 px-3 py-1 rounded-full text-sm">
+
+        {/* INFO */}
+        <div className="md:col-span-1 lg:col-span-3 p-4 md:p-6 rounded-2xl border border-[#15803D27] bg-gray-100">
+
+          {/* tags */}
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-3">
+            <span className="bg-[#15803D46] text-gray-600 px-3 py-1 rounded-full text-xs md:text-sm">
               {productDetails?.category.name}
             </span>
 
-            <span className="bg-gray-200 text-[#15803D] px-3 py-1 rounded-full text-sm">
+            <span className="bg-gray-200 text-[#15803D] px-3 py-1 rounded-full text-xs md:text-sm">
               {productDetails?.brand.name}
             </span>
           </div>
 
           {/* title */}
-          <h1 className="text-3xl font-bold mb-3">{productDetails?.title}</h1>
+          <h1 className="text-xl md:text-3xl font-bold mb-3">
+            {productDetails?.title}
+          </h1>
 
           {/* rating */}
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
             <div className="flex text-yellow-400">
               {Array.from({ length: 5 }).map((_, i) => {
                 const rating = productDetails?.ratingsAverage ?? 0;
@@ -93,36 +99,40 @@ export default async function page({
               })}
             </div>
 
-            <span className="text-gray-500">
+            <span className="text-gray-500 text-sm">
               {productDetails?.ratingsAverage} (
               {productDetails?.ratingsQuantity} reviews)
             </span>
           </div>
 
           {/* price */}
-          <h2 className="text-4xl font-bold mb-5">
+          <h2 className="text-2xl md:text-4xl font-bold mb-5">
             {productDetails?.price} EGP
           </h2>
 
           {/* stock */}
-          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full mb-6 text-sm">
             <div className="w-2 h-2 bg-green-500 rounded-full"></div>
             In Stock
           </div>
 
           {/* description */}
-          <p className="text-gray-500 mb-6">{productDetails?.description}</p>
+          <p className="text-gray-500 mb-6 text-sm md:text-base">
+            {productDetails?.description}
+          </p>
 
-          {/* actions */}
-          <ProductActions
-            price={productDetails?.price}
-            quantity={productDetails?.quantity}
-            id={productDetails?._id}
-          />
+          {/* actions (Responsive Buttons) */}
+          <div className="flex flex-col gap-3 w-full">
+            <ProductActions
+              price={productDetails?.price}
+              quantity={productDetails?.quantity}
+              id={productDetails?._id}
+            />
+          </div>
+
         </div>
+
       </div>
     </div>
-    //   </div>
-    // </div>
   );
 }
