@@ -24,13 +24,13 @@ export default function SignUp() {
     console.log("register", data);
     const result = await registerActions(data);
 
-  if (result.success) {
+  if (result?.success) {
     toast.success(result.message || "Account created successfully");
     setTimeout(() => {
         router.push('/LogIn')
     },1500 );
   } else {
-    toast.error(result.message || "Something went wrong");
+    toast.error(result?.message || "Something went wrong");
   }
   }
 
