@@ -9,13 +9,21 @@ import ClearAllProducts from "./ClearAllProducts";
 export default async function page() {
   const userCart = await getCartProducts();
   console.log("user cart details" , userCart); 
-  
   if (userCart === undefined) {
-    return new Error("session ended , please login again");
-  }
-  <div className="text-center mt-10">
+  return (
+    <div className="text-center mt-10 text-red-500">
+      session ended , please login again
+    </div>
+  );
+}
+
+if (!userCart) {
+  return (
+    <div className="text-center mt-10">
       No products in cart 🛒
     </div>
+  );
+}
   // totalCartPrice => cartResponse
   const { products, _id } = userCart as CartResponse;
   return (
