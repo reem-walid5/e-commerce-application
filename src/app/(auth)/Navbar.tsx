@@ -1,118 +1,129 @@
-import React from "react";
-import { BiSolidCart } from "react-icons/bi";
-import { CiUser } from "react-icons/ci";
-import { FaGift, FaPhoneAlt, FaUserPlus ,FaShoppingCart, FaHeart, FaUser, FaSearch} from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { Headphones } from "lucide-react";
-
+"use client";
 import {
   DropdownMenu,
-  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-
+  DropdownMenuTrigger,
+} from "_/components/ui/dropdown-menu";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import {
+  FaPhoneAlt,
+  FaRegHeart,
+  FaRegUserCircle,
+  FaSearch,
+  FaShoppingCart,
+  FaUser,
+} from "react-icons/fa";
+import Header from "../_components/Header/Header";
+import { useCart } from "../_Context/CartContextProvider";
+import { useWishlist } from "../_Context/WishlistContextProvider";
 export default function Navbar() {
+  const { numberOfCartItems } = useCart();
+  const { numberOfWishlistItems } = useWishlist();
+  const session = useSession();
+  const isUserAuthenticated = session.status === "authenticated";
   return (
-    <div>
-      <div className="container m-auto py-3 flex items-center justify-between">
-        <div className="flex items-center gap-5">
-          <div className="flex items-center gap-1">
-            <BiSolidCart className="text-[15px] text-[#7f5539]" />
-            <p className="text-[#b08968] text-[14px]">Free Shipping on Orders 500 EGP</p>
+    <div className="sticky top-0 z-50 bg-white">
+      <Header />
+      <div className="bg-white border-t border-[#15803D]">
+        <nav className="flex items-center justify-between container m-auto py-3 ">
+          {/* Logo */}
+          <div className="flex items-center gap-2 text-3xl font-semibold text-gray-700">
+            <FaShoppingCart className="text-[#15803D] text-4xl" />
+            FreshCart
           </div>
-          <div className="flex items-center gap-1">
-            <FaGift className="text-[15px] text-[#7f5539]" />
-            <p className="text-[#b08968] text-[14px]">New Arrivals Daily</p>
+          {/* Search */}
+          <div className="flex items-center border rounded-full overflow-hidden w-105 bg-white">
+            <input
+              type="text"
+              placeholder="Search for products, brands and more..."
+              className="flex-1 px-4 py-2 outline-none"
+            />
+            <button className="bg-[#15803D] text-white rounded-full p-2 mx-2">
+              <FaSearch />
+            </button>
           </div>
-        </div>
-        <div className="hidden items-center gap-5 lg:flex">
-          <div className="flex items-center gap-1">
-            <FaPhoneAlt className="text-[12px] text-[#b08968]" />
-            <p className="text-[#b08968] text-[13px]">+1 (800) 123-4567</p>
+          {/* Links */}
+          <ul className="flex items-center gap-6 font-medium text-gray-700">
+            <li className="cursor-pointer">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link href="/Shop">Shop</Link>
+            </li>
+            {/* Categories Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="cursor-pointer">
+                Categories
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-[#f2f2f2]">
+                <DropdownMenuItem className="text-[#15803D]">
+                  <Link href="/Categories">All Categories</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-[#15803D]">
+                  <Link href="/Categories/Electronics">Electronics</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-[#15803D]">
+                  <Link href="/Categories/WomenFashion">Women&apos;s Fashion</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-[#15803D]">
+                  <Link href="/Categories/MenFashion">men&apos;s Fashion</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-[#15803D]">
+                  <Link href="/Categories/Beauty">Beauty & Health</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <li className="cursor-pointer">
+              <Link href="/Brands">Brands</Link>
+            </li>
+          </ul>
+
+          {/* Right */}
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 text-sm text-gray-700">
+              <FaPhoneAlt size={20} />
+              <div>
+                <p className="text-xs">Support</p>
+                <p className="text-xs font-semibold">24/7 Help</p>
+              </div>
+            </div>
+
+            <Link href="/WishList">
+              <div className="relative">
+            <FaRegHeart className="text-xl transition-all duration-100 hover:text-[#15803D] cursor-pointer text-gray-500" />
+                {numberOfWishlistItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                    {numberOfWishlistItems}
+                  </span>
+                )}
+              </div>{" "}
+            </Link>
+            <Link href="/cart">
+              <div className="relative">
+                <FaShoppingCart className="text-xl transition-all duration-100 hover:text-[#15803D] cursor-pointer text-gray-500" />
+                {numberOfCartItems > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-green-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                    {numberOfCartItems}
+                  </span>
+                )}
+              </div>
+            </Link>
+            {isUserAuthenticated ? (
+              <Link href="/Profile">
+                <FaRegUserCircle className="text-xl transition-all duration-100 hover:text-[#15803D] cursor-pointer text-gray-500" />
+              </Link>
+            ) : (
+              <Link href="/LogIn">
+                <button className="flex items-center cursor-pointer gap-2 bg-[#15803D] text-[#f2f2f2] px-4 py-2 rounded-full">
+                  <FaUser />
+                  Sign In
+                </button>
+              </Link>
+            )}
           </div>
-          <div className="flex items-center gap-1">
-            <MdEmail className="text-[12px] text-[#b08968]" />
-            <p className="text-[#b08968] text-[13px]">support@freshcart.com</p>
-          </div>
-          <div className="bg-[#9c6644] w-0.5 h-5"></div>
-          <div className="flex items-center gap-1">
-            <CiUser className="text-[12px] text-[#b08968]" />
-            <p className="text-[#b08968] text-[13px]">SignIn</p>
-          </div>
-          <div className="flex items-center gap-1">
-            <FaUserPlus className="text-[12px] text-[#b08968]" />
-            <p className="text-[#b08968] text-[13px]">SignUp</p>
-          </div>
-        </div>
-      </div>
-      <div className="border-t border-[#9c6644]">
-        <nav className="flex items-center justify-between px-10 py-3 bg-gray-100">
-
-      {/* Logo */}
-      <div className="flex items-center gap-2 text-xl font-semibold text-green-600">
-        <FaShoppingCart />
-        FreshCart
-      </div>
-
-      {/* Search */}
-      <div className="flex items-center border rounded-full overflow-hidden w-105 bg-white">
-        <input
-          type="text"
-          placeholder="Search for products, brands and more..."
-          className="flex-1 px-4 py-2 outline-none"
-        />
-        <button className="bg-green-600 text-white px-4 py-2">
-          <FaSearch />
-        </button>
-      </div>
-
-      {/* Links */}
-      <ul className="flex items-center gap-6 font-medium text-gray-700">
-
-        <li className="cursor-pointer">Home</li>
-
-        <li className="cursor-pointer">Shop</li>
-
-        {/* Categories Dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger className="border px-3 py-1 rounded cursor-pointer">
-            Categories
-          </DropdownMenuTrigger>
-
-          <DropdownMenuContent>
-            <DropdownMenuItem>Vegetables</DropdownMenuItem>
-            <DropdownMenuItem>Fruits</DropdownMenuItem>
-            <DropdownMenuItem>Dairy</DropdownMenuItem>
-            <DropdownMenuItem>Snacks</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <li className="cursor-pointer">Brands</li>
-
-      </ul>
-
-      {/* Right */}
-      <div className="flex items-center gap-5">
-
-        <div className="flex items-center gap-2 text-sm text-gray-600">
-          <Headphones size={20} />
-          <div>
-            <p className="text-xs">Support</p>
-            <p className="text-xs font-semibold">24/7 Help</p>
-          </div>
-        </div>
-
-        <FaHeart className="text-lg cursor-pointer" />
-        <FaShoppingCart className="text-lg cursor-pointer" />
-
-        <button className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-full">
-          <FaUser />
-          Sign In
-        </button>
-
-      </div>
-    </nav>
+        </nav>
       </div>
     </div>
   );
