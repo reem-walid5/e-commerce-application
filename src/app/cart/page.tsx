@@ -13,9 +13,9 @@ export default async function page() {
   if (userCart === undefined) {
     return new Error("session ended , please login again");
   }
-  if (!userCart) {
-    return;
-  }
+  <div className="text-center mt-10">
+      No products in cart 🛒
+    </div>
   // totalCartPrice => cartResponse
   const { products, _id } = userCart as CartResponse;
   return (
