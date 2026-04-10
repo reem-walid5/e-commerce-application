@@ -31,7 +31,7 @@ export default function Login() {
   if (res?.ok) {
   toast.success("Login successful");
   const res = await getCurrentUserLogin()
-  updataCartNumber(res?.products.length)
+  updataCartNumber(res?.products?.length ?? 0)
   setTimeout(() => {
     router.push("/");
   }, 500);
