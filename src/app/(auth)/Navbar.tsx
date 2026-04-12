@@ -57,6 +57,19 @@ export default function Navbar() {
 
           {/* DESKTOP CONTENT */}
           <div className="hidden xl:flex items-center gap-6 w-full justify-between">
+            
+            {/* 🔹 SEARCH (اتنقلت هنا) */}
+            <div className="flex items-center border rounded-full mx-5 overflow-hidden w-105 bg-white">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="flex-1 px-4 py-2 outline-none"
+              />
+              <button className="bg-[#15803D] text-white rounded-full p-2 mx-2">
+                <FaSearch />
+              </button>
+            </div>
+
             {/* LINKS */}
             <ul className="flex items-center gap-6 font-medium text-gray-700">
               <li>
@@ -91,18 +104,6 @@ export default function Navbar() {
                 <Link href="/Brands">Brands</Link>
               </li>
             </ul>
-
-            {/* SEARCH */}
-            <div className="flex items-center border rounded-full overflow-hidden w-105 bg-white">
-              <input
-                type="text"
-                placeholder="Search..."
-                className="flex-1 px-4 py-2 outline-none"
-              />
-              <button className="bg-[#15803D] text-white rounded-full p-2 mx-2">
-                <FaSearch />
-              </button>
-            </div>
 
             {/* RIGHT ICONS */}
             <div className="flex items-center gap-4">
