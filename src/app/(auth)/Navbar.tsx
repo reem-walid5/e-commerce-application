@@ -45,7 +45,7 @@ export default function Navbar() {
             FreshCart
           </div>
 
-          {/* RIGHT: Menu Icon (mobile) */}
+         
           <div className="xl:hidden">
             <button
               onClick={() => setOpen(!open)}
@@ -55,10 +55,10 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* DESKTOP CONTENT */}
+          
           <div className="hidden xl:flex items-center gap-6 w-full justify-between">
             
-            {/* 🔹 SEARCH (اتنقلت هنا) */}
+            
             <div className="flex items-center border rounded-full mx-5 overflow-hidden w-105 bg-white">
               <input
                 type="text"
