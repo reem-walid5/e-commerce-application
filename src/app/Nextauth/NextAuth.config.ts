@@ -33,10 +33,9 @@ export const authOptions: NextAuthOptions = {
               credentialsToken : finalRes.token,
             };
           }
-          return null;
         } catch (error) {
           console.log("AUTH ERROR:", error);
-          return null; 
+          throw new Error("Authentication failed"); 
         }
       },
     }),

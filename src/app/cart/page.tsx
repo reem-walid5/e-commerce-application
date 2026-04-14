@@ -6,28 +6,43 @@ import { CartResponse } from "../api/Type";
 import UpdateCountButton from "./updateCountButton";
 import Link from "next/link";
 import ClearAllProducts from "./ClearAllProducts";
+
 export default async function page() {
   const userCart = await getCartProducts();
-  console.log("user cart details" , userCart); 
-  if (userCart === undefined) {
-  return (
-    <div className="text-center mt-10 text-red-500">
-      session ended , please login again
-    </div>
-  );
-}
+  console.log("user cart details", userCart);
 
-if (!userCart) {
-  return (
-    <div className="text-center mt-10">
-      No products in cart 🛒
-    </div>
-  );
-}
-  // totalCartPrice => cartResponse
+  if (userCart === undefined) {
+    return (
+      <div className="text-center mt-10 text-red-500">
+        session ended , please login again
+      </div>
+    );
+  }
+
+  if (!userCart || userCart.products.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center mt-20 gap-5">
+        <h2 className="text-2xl font-semibold text-gray-700">
+          🛒 Cart is empty
+        </h2>
+
+        <p className="text-gray-500">
+          Looks like you haven’t added anything yet
+        </p>
+
+        <Link href="/">
+          <button className="bg-green-600 text-white px-6 py-2 rounded-2xl hover:bg-green-700 transition">
+            Go to shopping
+          </button>
+        </Link>
+      </div>
+    );
+  }
+
   const { products, _id } = userCart as CartResponse;
+
   return (
-    <div className="grid grid-cols-1 container m-auto gap-5">
+    <div className="grid grid-cols-1 container m-auto gap-5 mt-8">
       {products.map((product) => (
         <Card
           className="w-full p-5 rounded-2xl shadow-sm flex flex-row justify-between"
@@ -49,9 +64,10 @@ if (!userCart) {
               </div>
             </div>
 
-            {/* Info */}
             <div className="flex flex-col gap-2">
-              <h2 className="font-semibold text-lg">{product.product.title}</h2>
+              <h2 className="font-semibold text-lg">
+                {product.product.title}
+              </h2>
               <div className="flex gap-3 items-center ">
                 <div className="w-fit px-1 bg-green-100 rounded-2xl">
                   {product.product.category.name}
@@ -70,7 +86,6 @@ if (!userCart) {
                 </span>
               </div>
 
-              {/* Quantity */}
               <div className="flex items-center mt-2 border rounded-lg overflow-hidden w-fit">
                 <div>
                   <UpdateCountButton
@@ -111,8 +126,11 @@ if (!userCart) {
         </Card>
       ))}
       <Link href={`/cart/${_id}`}>
-        <button className="p-4 bg-amber-600">go to pay</button>
+        <button className="bg-green-600 text-[16px] text-white py-2 px-4 cursor-pointer rounded-2xl">
+          go to pay
+        </button>
       </Link>
+
       <ClearAllProducts />
     </div>
   );

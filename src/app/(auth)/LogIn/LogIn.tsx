@@ -42,7 +42,6 @@ export default function Login() {
 
   return (
     <div className="w-full items-center justify-center flex mt-8 ">
-        {/* <Toaster position="top-center" richColors /> */}
       <div className="w-full max-w-md border p-6  rounded-lg shadow border-gray-300 ">
         <form id="form-rhf-demo" onSubmit={handleSubmit(MySubmit)}>
           <FieldGroup>
