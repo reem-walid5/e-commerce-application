@@ -16,7 +16,8 @@ import { decode } from "next-auth/jwt";
 import { cookies } from "next/headers";
 
 export default async function getUserToken(): Promise<string | null> {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
+
   const NextAuthToken =
     cookieStore.get("next-auth.session-token")?.value ||
     cookieStore.get("__Secure-next-auth.session-token")?.value;
