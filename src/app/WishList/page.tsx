@@ -46,7 +46,7 @@ export default async function page() {
   return (
     <div className="min-h-screen">
       <div className="bg-gray-50 py-12 mb-12">
-        <div className="flex items-center gap-4 container m-auto">
+        <div className="flex items-center gap-4 px-10 md:px-15 lg:px-25 m-auto">
           <div className="bg-red-100 p-4 rounded-xl">
             <FaHeart className="text-red-500 text-xl" />
           </div>
@@ -61,7 +61,7 @@ export default async function page() {
       </div>
 
       {/* Table */}
-      <div className=" container m-auto">
+      <div className=" px-10 md:px-15 lg:px-25 m-auto">
         <Card className="rounded-2xl p-0 overflow-hidden mb-10">
           <div className="grid grid-cols-4 px-6 py-4 text-gray-500 text-[16px] font-semibold border-b">
             <p className="text-left ml-20">Product</p>

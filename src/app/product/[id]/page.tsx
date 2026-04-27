@@ -25,7 +25,7 @@ export default async function page({
   }
 
   return (
-    <div className="container m-auto py-4 md:py-6 px-3 md:px-0">
+    <div className="px-10 md:px-15 lg:px-25 m-auto py-4 md:py-6 px-3 md:px-0">
 
       {/* BREADCRUMB */}
       <Breadcrumb className="mb-4">

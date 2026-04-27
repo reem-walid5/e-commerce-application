@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function CategoriesCard() {
   const allCategories = await getAllCategories();
   return (
-    <div className="container m-auto">
+    <div className="px-10 md:px-15 lg:px-25 m-auto">
       <div className="flex items-center gap-3 my-5">
         <div className="w-1 h-4 bg-green-500 "></div>
         <p className="text-2xl font-semibold text-gray-800">

@@ -24,7 +24,7 @@ export default function MainSlider() {
         <div className="absolute inset-0 bg-green-600/80"></div>
 
         {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-center container m-auto text-white">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-15 lg:px-25 m-auto text-white">
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Fresh Products Delivered <br /> to your Door
           </h1>
@@ -47,7 +47,7 @@ export default function MainSlider() {
         <div className="absolute inset-0 bg-green-600/80"></div>
 
         {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-center container m-auto text-white">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-15 lg:px-25 m-auto text-white">
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Premium Quality <br /> Guaranteed
           </h1>
@@ -70,7 +70,7 @@ export default function MainSlider() {
         <div className="absolute inset-0 bg-green-600/80"></div>
 
         {/* Content */}
-        <div className="absolute inset-0 flex flex-col justify-center container m-auto text-white">
+        <div className="absolute inset-0 flex flex-col justify-center px-10 md:px-15 lg:px-25 m-auto text-white">
           <h1 className="text-4xl font-bold mb-4 leading-tight">
             Fast and Free Delivery
           </h1>

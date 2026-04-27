@@ -8,7 +8,7 @@ export default async function Page() {
   const electronics = await getElectronicsProducts();
 
   return (
-    <div className="container m-auto">
+    <div className="px-10 md:px-15 lg:px-25 m-auto">
         <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-4">
       {electronics?.length ? (
         electronics.map((product: ProductType) => (

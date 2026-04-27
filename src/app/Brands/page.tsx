@@ -7,8 +7,8 @@ export default async function page() {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Header */}
-      <div className="bg-linear-to-r from-purple-600 to-purple-400 text-white py-16 px-10 ">
-        <div className="container m-auto">
+      <div className="bg-linear-to-r from-purple-600 to-purple-400 text-white py-16 px-10 md:px-15 lg:px-25 m-auto ">
+        <div className="px-10 md:px-15 lg:px-25 m-auto">
           <div className="text-sm opacity-80">
             <Link href="/">Home</Link> /{" "}
             <Link href="/brands" className="font-semibold">
@@ -30,7 +30,7 @@ export default async function page() {
       </div>
 
       {/* Brands Grid */}
-      <div className="container m-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-7">
+      <div className="px-10 md:px-15 lg:px-25 m-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-7">
         {brands?.map((brand) => (
           <Link key={brand._id}  href={`/Brands/brand/${brand._id}`}>
             <BrandCard brand={brand} />

@@ -6,8 +6,8 @@ import ProductPage from '../_components/Prdoducts/page'
 export default function page() {
   return (
     <div>
-      <div className="bg-linear-to-r from-green-700 to-green-500 text-white py-16 px-10 ">
-        <div className="container m-auto">
+      <div className="bg-linear-to-r from-green-700 to-green-500 text-white py-16 px-10 md:px-15 lg:px-25 m-auto ">
+        <div className="px-10 md:px-15 lg:px-25 m-auto">
           <div className="text-sm opacity-80">
             <Link href="/">Home</Link> /{" "}
             <Link href="/Shop" className="font-semibold">

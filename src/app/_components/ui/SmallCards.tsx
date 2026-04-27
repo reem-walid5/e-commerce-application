@@ -30,7 +30,7 @@ const features = [
 export default function SmallCards() {
   return (
     <div className="bg-gray-200">
-      <div className="py-4 md:py-6 px-3 md:px-4 container m-auto">
+      <div className="py-4 md:py-6 px-3 md:px-4 px-10 md:px-15 lg:px-25 m-auto">
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           

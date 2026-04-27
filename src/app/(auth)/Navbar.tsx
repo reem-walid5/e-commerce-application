@@ -38,7 +38,7 @@ export default function Navbar() {
 
       <div className="bg-white border-t border-[#15803D]">
         {/* NAV */}
-        <nav className="flex items-center justify-between container m-auto py-3">
+        <nav className="flex items-center justify-between px-10 md:px-15 lg:px-25 m-auto py-3">
           {/* LEFT: LOGO */}
           <div className="flex items-center gap-2 text-3xl font-semibold text-gray-700">
             <FaShoppingCart className="text-[#15803D] text-4xl" />

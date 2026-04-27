@@ -16,7 +16,7 @@ export default function Footer() {
   return (
     <div className="mt-10">
       <div className="bg-green-50">
-        <div className="flex items-center justify-between py-6 container m-auto">
+        <div className="flex items-center justify-between py-6 px-10 md:px-15 lg:px-25 m-auto">
         <div className="flex items-center gap-3">
           <MdLocalShipping className="text-green-600 text-xl" />
           <div>
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
       </div>
       </div>
-      <footer className="bg-[#0D1B2A] text-gray-300 pt-16 pb-6 px-8  md:px-20">
+      <footer className="bg-[#0D1B2A] text-gray-300 pt-16 pb-6 px-8  md:px-10 md:px-15 lg:px-25 m-auto">
       <div className="grid grid-cols-1 md:grid-cols-6 gap-12">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-lg w-fit mb-6">

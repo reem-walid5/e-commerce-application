@@ -9,7 +9,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const products = await getProductsByBrand(id);
 
   return (
-    <div className="container m-auto mt-10">
+    <div className="px-10 md:px-15 lg:px-25 m-auto mt-10">
       {products && products.length > 0 ? (
         <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-4">
           {products.map((product: ProductType) => (

@@ -11,8 +11,8 @@ export default async function Page() {
   return (
     <div>
     
-        <div className="bg-linear-to-r from-purple-600 to-purple-400 text-white py-16 px-10 mb-10">
-        <div className="container m-auto">
+        <div className="bg-linear-to-r from-purple-600 to-purple-400 text-white py-16 px-10 md:px-15 lg:px-25 m-auto mb-10">
+        <div className="px-10 md:px-15 lg:px-25 m-auto">
           <div className="text-sm opacity-80">
             <Link href="/">Home /</Link>
             <Link href="/Categories" className="font-semibold mx-2">
@@ -36,7 +36,7 @@ export default async function Page() {
         </div>
       </div> 
 
-      <div className="container m-auto">
+      <div className="px-10 md:px-15 lg:px-25 m-auto">
         <div className="grid lg:grid-cols-5 grid-cols-2 md:grid-cols-3 gap-4">
       {menProducts?.length ? (
         menProducts.map((product: ProductType) => (

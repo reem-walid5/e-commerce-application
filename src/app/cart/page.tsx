@@ -42,7 +42,7 @@ export default async function page() {
   const { products, _id } = userCart as CartResponse;
 
   return (
-    <div className="grid grid-cols-1 container m-auto gap-5 mt-8">
+    <div className="grid grid-cols-1 px-10 md:px-15 lg:px-25 m-auto gap-5 mt-8">
       {products.map((product) => (
         <Card
           className="w-full p-5 rounded-2xl shadow-sm flex flex-row justify-between"

@@ -14,7 +14,7 @@ export default function Header() {
   const isUserAuthenticated = !!userName;
 
   return (
-    <div className="container m-auto py-3 flex items-center justify-between">
+    <div className="px-10 md:px-15 lg:px-25 m-auto py-3 flex items-center justify-between">
 
       {/* LEFT */}
       <div className="flex items-center gap-5">
